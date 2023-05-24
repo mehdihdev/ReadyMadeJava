@@ -1,7 +1,14 @@
+import java.util.*;
 //Child Class - Staff
 public class Staff extends User {
     int totalLunchesOrdering;
     int totalLunchesServed;
+
+    ArrayList<String> itemName = new ArrayList<String>();
+    ArrayList<Integer> itemPrice = new ArrayList<Integer>();
+
+    ArrayList<Student> students = new ArrayList<Student>();
+
     public Staff(String name, String password, String email, String phoneNumber, int classID, int totalLunchesOrdering) {
         super(name, password, email, phoneNumber, classID);
         this.totalLunchesOrdering = totalLunchesOrdering;
@@ -31,7 +38,7 @@ public class Staff extends User {
             return super.toString() + "\n***********************************\n Staff Information\n***********************************\nTotal Lunches Ordered: " + getTotalOrders() + "\nTotal Lunches Served: " + getTotalServed() + "\n***********************************";
         }
     
-        
+
         //setters
         public void setName(String name) {
             super.setName(name);
@@ -53,11 +60,21 @@ public class Staff extends User {
             totalLunchesOrdering = amnt;
         }
 
+        public void orderLunch(int LunchNumber) {
+            totalLunchesOrdering -= 1;
+            totalLunchesServed +=1;
+            
+            double totalPrice = 0.00;
+            for(int i = 0; i < students.size(); i++) {
+                if (students.get(i).getStudentID() == LunchNumber) {
+                    for (int a= 0; a < itemPrice.size(); i++) {
+                        totalPrice += itemPrice.get(a);
+                    }
+                    if (totalPrice <= students.get(i).getBalance()) {
+                        students.get(i).removeBalance(totalPrice);
+                    }
+                }
 
-        //Other methods
-        public void addLunch() {
-            totalLunchesOrdering += 1;
+            }
         }
-
-
 }
