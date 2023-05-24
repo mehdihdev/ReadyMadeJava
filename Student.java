@@ -23,7 +23,6 @@ public class Student extends User {
     public int getClassID() {
         return super.getClassID();
     }
-
     public double getBalance() {
         return balance;
     }
@@ -63,13 +62,9 @@ public class Student extends User {
         } else {
             System.out.println("Insufficient Funds");
         }
-
     }
 
-    public void orderLunch() {
-        //TODO: Implement orderLunch()
-        
+    public void removeBalance(double amnt) {
+        balance -= amnt;
     }
-
-
 }
