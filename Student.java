@@ -59,10 +59,12 @@ class Student extends User {
     public void addFunds(CreditCard creditCard, double amnt) {
         //TODO: Implement Add Funds
         balance += amnt;
+        creditCard.addBalance(-1*amnt)
     }
 
     public void orderLunch() {
         //TODO: Implement orderLunch()
+        
     }
 
 
