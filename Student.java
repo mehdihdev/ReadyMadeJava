@@ -1,5 +1,5 @@
 //Child Class - Student
-class Student extends User {
+public class Student extends User {
     int studentID;
     double balance;
     boolean orderedLunch;
@@ -57,9 +57,13 @@ class Student extends User {
 
     //Core methods
     public void addFunds(CreditCard creditCard, double amnt) {
-        //TODO: Implement Add Funds
-        balance += amnt;
-        creditCard.addBalance(-1*amnt)
+        if (creditCard.getBalance() >= amnt) {
+            balance += amnt;
+            creditCard.removeBalance(amnt);
+        } else {
+            System.out.println("Insufficient Funds");
+        }
+
     }
 
     public void orderLunch() {

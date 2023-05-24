@@ -1,5 +1,4 @@
 //Main Class
-
 public class Main {
     public static void main(String[] args) {
         CreditCard newCredit = new CreditCard("Mehdi Hussain", 21387213, "05/31", 828);

@@ -1,5 +1,5 @@
 //Parent Class - User
-class User {
+public class User {
     String name;
     String password;
     String email;

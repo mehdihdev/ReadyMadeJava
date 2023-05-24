@@ -44,8 +44,11 @@ public class CreditCard {
     public void setCVV(int newCVV) {
         cvvCode = newCVV;
     }
-    public void addBalance(int amnt) {
+    public void addBalance(double amnt) {
         balance += amnt;
+    }
+    public void removeBalance(double amnt) {
+        balance -= amnt;
     }
 
 }

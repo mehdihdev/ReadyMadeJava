@@ -21,7 +21,6 @@ public class Staff extends User {
         public int getClassID() {
             return super.getClassID();
         }
-    
         public int getTotalOrders() {
             return totalLunchesOrdering;
         }
@@ -32,6 +31,7 @@ public class Staff extends User {
             return super.toString() + "\n***********************************\n Staff Information\n***********************************\nTotal Lunches Ordered: " + getTotalOrders() + "\nTotal Lunches Served: " + getTotalServed() + "\n***********************************";
         }
     
+        
         //setters
         public void setName(String name) {
             super.setName(name);

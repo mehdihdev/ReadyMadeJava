@@ -1,5 +1,5 @@
 //Child Class - Parents
-class Parents extends User {
+public class Parents extends User {
     int studentID;
     CreditCard creditCard;
     public Parents(String name, String password, String email, String phoneNumber, int classID, int studentID) {
