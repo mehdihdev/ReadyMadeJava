@@ -37,7 +37,7 @@ public class User {
         if (password.equals(oldPass))  {
             this.password = newPass;
         } else {
-            System.out.println("Incorrect Old Password given. Password unchanged.");
+            System.out.println("Incorrect Password. Password Unchanged.");
         }
     }
     public void setPhoneNumber(String newPhone) {
