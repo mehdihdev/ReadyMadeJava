@@ -34,6 +34,9 @@ public class Staff extends User {
         public int getTotalServed() {
             return totalLunchesServed;
         }
+        public String getPassword() {
+            return super.password;
+        }
         public String toString() {
             return super.toString() + "\n***********************************\n Staff Information\n***********************************\nTotal Lunches Ordered: " + getTotalOrders() + "\nTotal Lunches Served: " + getTotalServed() + "\n***********************************";
         }
@@ -67,7 +70,7 @@ public class Staff extends User {
             double totalPrice = 0.00;
             for(int i = 0; i < students.size(); i++) {
                 if (students.get(i).getStudentID() == LunchNumber) {
-                    for (int a= 0; a < itemPrice.size(); i++) {
+                    for (int a= 0; a < itemPrice.size(); a++) {
                         totalPrice += itemPrice.get(a);
                     }
                     if (totalPrice <= students.get(i).getBalance()) {
