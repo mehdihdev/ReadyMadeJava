@@ -4,9 +4,9 @@ public class User {
     String password;
     String email;
     String phoneNumber;
-    int classID;
+    String classID;
     CreditCard creditCard;
-    public User(String name, String password, String email, String phoneNumber, int classID) {
+    public User(String name, String password, String email, String phoneNumber, String classID) {
         this.name = name;
         this.password = password;
         this.email = email;
@@ -23,7 +23,7 @@ public class User {
     public String getPhoneNumber() {
         return phoneNumber;
     }
-    public int getClassID() {
+    public String getClassID() {
         return classID;
     }
     public String toString() {
@@ -46,7 +46,7 @@ public class User {
     public void setCreditCard(CreditCard newCard) {
         creditCard = newCard;
     }
-    public void setClassID(int classID) {
+    public void setClassID(String classID) {
         this.classID = classID;
     }
 

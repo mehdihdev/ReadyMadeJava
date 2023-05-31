@@ -4,7 +4,7 @@ public class Student extends User {
     double balance;
     boolean orderedLunch;
     String mealPlan;
-    public Student(String name, String password, String email, String phoneNumber, int studentID, int classID) {
+    public Student(String name, String password, String email, String phoneNumber, int studentID, String classID) {
         super(name, password, email, phoneNumber, classID);
         this.studentID = studentID;
         balance = 0.00;
@@ -20,7 +20,7 @@ public class Student extends User {
     public String getPhoneNumber() {
         return super.getPhoneNumber();
     }
-    public int getClassID() {
+    public String getClassID() {
         return super.getClassID();
     }
     public double getBalance() {
@@ -48,7 +48,7 @@ public class Student extends User {
     public void setCreditCard(CreditCard newCard) {
         super.setCreditCard(newCard);
     }
-    public void setClassID(int classID) {
+    public void setClassID(String classID) {
         super.setClassID(classID);
     }
 

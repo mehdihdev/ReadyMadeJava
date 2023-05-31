@@ -2,7 +2,7 @@
 public class Parents extends User {
     int studentID;
     CreditCard creditCard;
-    public Parents(String name, String password, String email, String phoneNumber, int classID, int studentID) {
+    public Parents(String name, String password, String email, String phoneNumber, String classID, int studentID) {
         super(name, password, email, phoneNumber, classID);  
         this.studentID = studentID;
         creditCard = null;
@@ -18,7 +18,7 @@ public class Parents extends User {
         public String getPhoneNumber() {
             return super.getPhoneNumber();
         }
-        public int getClassID() {
+        public String getClassID() {
             return super.getClassID();
         }
         public int getStudentID() {
@@ -41,7 +41,7 @@ public class Parents extends User {
         public void setCreditCard(CreditCard newCard) {
             super.setCreditCard(newCard);
         }
-        public void setClassID(int classID) {
+        public void setClassID(String classID) {
             super.setClassID(classID);
         }
 }

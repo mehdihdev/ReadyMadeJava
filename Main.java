@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.spi.CalendarDataProvider;
 
 //Main Class
 public class Main {
@@ -11,7 +12,9 @@ public class Main {
         ArrayList<Staff> allStaff = new ArrayList<Staff>();
 
         //These values are for testing, to showcase how staff can create students, etc. Use these values when logging in.
-        Staff initialStaff = new Staff("Aditi", "mehdi", "mehdi@mehdi.us", "9191234567", 1234567, 0);
+        Staff initialStaff = new Staff("Aditi", "mehdi", "mehdi@mehdi.us", "9191234567", "1234567", 0);
+
+        allStaff.add(0, initialStaff);
 
         while (!finalInput.equals("0")) {
             if (finalInput.equals("1")) {
@@ -19,7 +22,6 @@ public class Main {
                 String classID = classIDAsk(studentInput);
                 String studentID = studentIDAsk(studentInput);
                 break;
-
                 
             }
             if(finalInput.equals("2")) {
@@ -28,13 +30,30 @@ public class Main {
                 String password = passwordAsk(staffInput);
                 Staff newStaff = null;
                 for(int i = 0; i < allStaff.size(); i++) {
-                    if(Integer.toString(allStaff.get(i).getClassID()).equals(classID) && allStaff.get(i).getPassword().equals(password)) {
+                    if(allStaff.get(i).getClassID().equals(classID) && allStaff.get(i).getPassword().equals(password)) {
                         newStaff = allStaff.get(i);
-                        System.out.println("hihihihihihihihihi");
                         Scanner actionScanner = new Scanner(System.in);
                         String actionItem = staffActionItem(actionScanner);
+                        if(actionItem == "1") {
+                            System.out.println("Enter Menu Item to add: ");
+                            String itemName = addMenuName(actionScanner);
+                            double itemPrice = addMenuPrice(actionScanner);
+
+                            
+
+
+                        } 
+                        if(actionItem == "2") {
+
+                        }
+                        if(actionItem == "3") {
+
+                        }
+
+
                     }
-                }
+                } 
+                System.out.println("Wrong Class ID and/or password again");
                 break;
             }
             if (finalInput.equals("3")) {
@@ -81,10 +100,23 @@ public class Main {
     }
 
     public static String staffActionItem(Scanner input) {
-        System.out.print("What do you want to do?");
+        System.out.print("What do you want to do?\n1. Add to Menu\n2. Remove From Menu\n 3. Summary");
 
         String input1 = input.nextLine();
         return input1;
     }
-}
 
+    public static String addMenuName(Scanner input) {
+        System.out.print("Enter Item Name: ");
+
+        String input1 = input.nextLine();
+        return input1;
+    }
+
+    public static double addMenuPrice(Scanner input) {
+        System.out.print("Enter Price: ");
+
+        Double input1 = input.nextDouble();
+        return input1;
+    }
+}

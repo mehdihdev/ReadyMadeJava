@@ -9,7 +9,7 @@ public class Staff extends User {
 
     ArrayList<Student> students = new ArrayList<Student>();
 
-    public Staff(String name, String password, String email, String phoneNumber, int classID, int totalLunchesOrdering) {
+    public Staff(String name, String password, String email, String phoneNumber, String classID, int totalLunchesOrdering) {
         super(name, password, email, phoneNumber, classID);
         this.totalLunchesOrdering = totalLunchesOrdering;
         totalLunchesServed = 0;
@@ -25,7 +25,7 @@ public class Staff extends User {
         public String getPhoneNumber() {
             return super.getPhoneNumber();
         }
-        public int getClassID() {
+        public String getClassID() {
             return super.getClassID();
         }
         public int getTotalOrders() {
@@ -55,7 +55,7 @@ public class Staff extends User {
         public void setCreditCard(CreditCard newCard) {
             super.setCreditCard(newCard);
         }
-        public void setClassID(int classID) {
+        public void setClassID(String classID) {
             super.setClassID(classID);
         }
 
