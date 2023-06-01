@@ -1,3 +1,4 @@
+import java.text.*;
 import java.util.*;
 import java.util.spi.CalendarDataProvider;
 
@@ -5,6 +6,7 @@ import javax.sound.midi.SysexMessage;
 
 //Main Class
 public class Main {
+    DecimalFormat df = new DecimalFormat("#.00"); 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         String finalInput = "5";
@@ -30,7 +32,7 @@ public class Main {
                 Boolean studentExit = false;
                 while(!studentExit) {
                     Student studentFound = findStudent(allStudents, studentID);
-                    while(!studentFound.equals(null)) {
+                    while(!(studentFound == null)) {
                         Staff staffFound = findStaff(allStaff, studentFound.getClassID());
                         System.out.println("Welcome " + studentFound.getName());
                         String studentAction = studentActionAsk(studentInput);
@@ -50,16 +52,16 @@ public class Main {
                         }
                         if(studentAction.equals("3")) {
                             //Cart / Summary
+                            System.out.println(studentFound.getMenu());
                         }
                         if(studentAction.equals("4")) {
                             //Order Foods
-
                         }                   
                         if(studentAction.equals("0")) {
                             break;
                         }
                     }
-                    if(studentFound.equals(null)) {
+                    if(studentFound == null) {
                         System.out.println("StudentID Wrong. Try Again.");
                     }
                     break;
@@ -104,7 +106,7 @@ public class Main {
                         break; 
                     }
                 }
-                if(newStaff.equals(null)) {
+                if(newStaff == null) {
                     System.out.println("Wrong Class ID and/or password. Try again");
                 }
                 break;

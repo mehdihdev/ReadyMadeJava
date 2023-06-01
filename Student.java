@@ -1,6 +1,8 @@
 //Child Class - Student
+import java.text.*;
 import java.util.*;
 public class Student extends User {
+    DecimalFormat df = new DecimalFormat("#.00"); 
     int studentID;
     double balance;
     boolean orderedLunch;
@@ -35,11 +37,30 @@ public class Student extends User {
     public int getStudentID() {
         return studentID;
     }
-
     public String toString() {
         return super.toString() + "\n***********************************\n Student Information\n***********************************\nStudentID: " + getStudentID() + "\nBalance: " + getBalance() + "\n***********************************";
     }
 
+    public String getMenu() {
+        String returnString = "***********************************\n Cart Information\n***********************************\n";
+        if(menuItemName.size() == 0) { 
+            return "No Items in Cart. Add some to see some here! Total: $0.00";
+        } else {
+            for(int i = 0; i < menuItemName.size(); i++) {
+                returnString = returnString + i + ": " + menuItemName.get(i) + " - " + menuItemPrice.get(i) + "\n";
+            }
+        }
+        returnString = returnString + "\n***********************************" + "\nTotal Price: " + getTotalCost() + "\n***********************************" ; 
+        return returnString;
+    }
+
+    public String getTotalCost() {
+        double totalCost = 0.00;
+        for(int i = 0; i<menuItemPrice.size(); i++) {
+            totalCost += menuItemPrice.get(i);
+        }
+        return String.format("%.2f",totalCost);
+    }
 
     //setters
     public void setName(String name) {
