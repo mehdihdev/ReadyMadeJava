@@ -1,9 +1,15 @@
 //Child Class - Student
+import java.util.*;
 public class Student extends User {
     int studentID;
     double balance;
     boolean orderedLunch;
     String mealPlan;
+
+    ArrayList<String> menuItemName = new ArrayList<String>();
+    ArrayList<Double> menuItemPrice = new ArrayList<Double>();
+
+
     public Student(String name, String password, String email, String phoneNumber, int studentID, String classID) {
         super(name, password, email, phoneNumber, classID);
         this.studentID = studentID;
@@ -52,6 +58,10 @@ public class Student extends User {
         super.setClassID(classID);
     }
 
+    public void addToMenu(String name, double price) {
+        menuItemName.add(name);
+        menuItemPrice.add(price);
+    }
 
 
     //Core methods

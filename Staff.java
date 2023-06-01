@@ -5,7 +5,7 @@ public class Staff extends User {
     int totalLunchesServed;
 
     ArrayList<String> itemName = new ArrayList<String>();
-    ArrayList<Integer> itemPrice = new ArrayList<Integer>();
+    ArrayList<Double> itemPrice = new ArrayList<Double>();
 
     ArrayList<Student> students = new ArrayList<Student>();
 
@@ -38,9 +38,29 @@ public class Staff extends User {
             return super.password;
         }
         public String toString() {
-            return super.toString() + "\n***********************************\n Staff Information\n***********************************\nTotal Lunches Ordered: " + getTotalOrders() + "\nTotal Lunches Served: " + getTotalServed() + "\n***********************************";
+            return super.toString() + "\n***********************************\n Staff Information\n***********************************\nTotal Lunches Ordered: " + getTotalOrders() + "\nTotal Lunches Served: " + getTotalServed() + "\n***********************************\n" + getMenu();
         }
     
+        public String getMenu() {
+            String returnString = "***********************************\n Menu Information\n***********************************\n";
+            if(itemName.size() == 0) { 
+                return "No Items in Menu. Add some to see some here!";
+            } else {
+                for(int i = 0; i < itemName.size(); i++) {
+                    returnString = returnString + i + ": " + itemName.get(i) + " - " + itemPrice.get(i) + "\n";
+                }
+            }
+            returnString = returnString + "\n***********************************"; 
+            return returnString;
+        }
+
+        public String getFromMenuName(int index) {
+            return itemName.get(index);
+        }
+
+        public double getFromMenuPrice(int index) {
+            return itemPrice.get(index);
+        }
 
         //setters
         public void setName(String name) {
@@ -61,6 +81,16 @@ public class Staff extends User {
 
         public void setTotalLunches(int amnt) {
             totalLunchesOrdering = amnt;
+        }
+
+        public void addToMenu(String name, double price) {
+            itemName.add(name);
+            itemPrice.add(price);
+        }
+
+        public void removeFromMenu(int index) {
+            itemName.remove(index);
+            itemPrice.remove(index);
         }
 
         public void orderLunch(int LunchNumber) {
