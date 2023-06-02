@@ -100,6 +100,12 @@ public class Student extends User {
         }
     }
 
+    public void clearCart() {
+        menuItemName.clear();
+        menuItemPrice.clear();
+
+    }
+
     public Boolean removeBalance(double amnt) {
         if (balance >= amnt) {
             balance -= amnt;

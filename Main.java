@@ -64,7 +64,14 @@ public class Main {
                         }
                         if(studentAction.equals("4")) {
                             //Order Foods
-                            
+                            Boolean orderLunch = orderLunch(staffFound, studentFound);
+                            if (orderLunch == true) {
+                                System.out.println("Order Succesful!");
+                                studentFound.clearCart();
+                                
+                            } else {
+                                System.out.println("Order not succesful. Try again");
+                            }
                         }                   
                         if(studentAction.equals("0")) {
                             break;
@@ -254,10 +261,13 @@ public class Main {
         return null;
     }
 
-    public void orderLunch(Staff staff, Student student) {
+    public static Boolean orderLunch(Staff staff, Student student) {
         staff.totalLunchesOrdering -= 1;
         staff.totalLunchesServed +=1;
         
         double totalPrice = student.getTotalCost();
+        Boolean didWork = student.removeBalance(totalPrice);
+        return didWork;
+
     }
 }
