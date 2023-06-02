@@ -50,16 +50,16 @@ public class Student extends User {
                 returnString = returnString + i + ": " + menuItemName.get(i) + " - " + menuItemPrice.get(i) + "\n";
             }
         }
-        returnString = returnString + "\n***********************************" + "\nTotal Price: " + getTotalCost() + "\n***********************************" ; 
+        returnString = returnString + "\n***********************************" + "\nTotal Price: " + String.format("%.2f",getTotalCost()) + "\n***********************************" ; 
         return returnString;
     }
 
-    public String getTotalCost() {
+    public double getTotalCost() {
         double totalCost = 0.00;
         for(int i = 0; i<menuItemPrice.size(); i++) {
             totalCost += menuItemPrice.get(i);
         }
-        return String.format("%.2f",totalCost);
+        return totalCost;
     }
 
     //setters
@@ -84,6 +84,11 @@ public class Student extends User {
         menuItemPrice.add(price);
     }
 
+    public void removeFromOrder(int index) {
+        menuItemName.remove(index);
+        menuItemPrice.remove(index);
+    }
+
 
     //Core methods
     public void addFunds(CreditCard creditCard, double amnt) {
@@ -95,7 +100,12 @@ public class Student extends User {
         }
     }
 
-    public void removeBalance(double amnt) {
-        balance -= amnt;
+    public Boolean removeBalance(double amnt) {
+        if (balance >= amnt) {
+            balance -= amnt;
+            return true;
+        }
+        return false;
+        
     }
 }

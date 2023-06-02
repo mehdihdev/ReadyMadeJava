@@ -1,8 +1,5 @@
 import java.text.*;
 import java.util.*;
-import java.util.spi.CalendarDataProvider;
-
-import javax.sound.midi.SysexMessage;
 
 //Main Class
 public class Main {
@@ -12,6 +9,7 @@ public class Main {
         String finalInput = "5";
         ArrayList<Staff> allStaff = new ArrayList<Staff>();
         ArrayList<Student> allStudents = new ArrayList<Student>();
+        ArrayList<Parents> allParents = new ArrayList<Parents>();
 
         //These values are for testing, to showcase how staff can create students, etc. Use these values when logging in.
         Staff initialStaff = new Staff("Aditi", "mehdi", "mehdi@mehdi.us", "9191234567", "1234567", 0);
@@ -21,8 +19,12 @@ public class Main {
         Student newStudent = new Student("Mehdi Hussain", "Cool Password", "mehdi@mehdi.us", "+1 (919) 342-8412", 123123213, "1234567");
         newStudent.setCreditCard(newCredit);
 
+        Parents newParent = new Parents("Aditi Rai", "password", "aditirai@gmail.com", "9191234567", "1234567", 123123213);
+        newParent.setCreditCard(newCredit);
+
         allStaff.add(initialStaff);
         allStudents.add(newStudent);
+        allParents.add(newParent);
 
         while (!finalInput.equals("0")) {
             finalInput = initialAsk(input);
@@ -49,6 +51,12 @@ public class Main {
                         }
                         if(studentAction.equals("2")) {
                             //Remove from Order
+                            System.out.println(studentFound.getMenu());
+                            System.out.println("Select Item to remove!");
+                            String removeFromOrder = addMenuNum(studentInput);
+                            int removeFromOrderIndex = Integer.valueOf(removeFromOrder);
+                            studentFound.removeFromOrder(removeFromOrderIndex);
+                            System.out.println("Item successfully removed from cart!");
                         }
                         if(studentAction.equals("3")) {
                             //Cart / Summary
@@ -56,6 +64,7 @@ public class Main {
                         }
                         if(studentAction.equals("4")) {
                             //Order Foods
+                            
                         }                   
                         if(studentAction.equals("0")) {
                             break;
@@ -112,7 +121,35 @@ public class Main {
                 break;
             }
             while(finalInput.equals("3")) {
-                System.out.println("no no dddddd");
+                Scanner parentsInput = new Scanner(System.in);
+                String email = emailAsk(parentsInput);
+                String password = passwordAsk(parentsInput);
+                Parents parentFound = null;
+                Student studentFound = null;
+                for(int i = 0; i<allParents.size(); i++ ) {
+                    if(allParents.get(i).getEmail() == email && allParents.get(i).getPassword() == password) {
+                        parentFound = allParents.get(i);
+                        studentFound = findStudent(allStudents, Integer.toString(parentFound.getStudentID()));
+                        String parentsAction = parentActionAsk(parentsInput);
+                        if(parentsAction == "1") {
+                            System.out.println(studentFound.getBalance());
+                        }
+                        if(parentsAction == "2") {
+                            String amount = getAmount(parentsInput);
+                            studentFound.addFunds(parentFound.getCreditCard(), Integer.valueOf(amount));
+                        }
+                        if(parentsAction == "3") {
+                            System.out.println(parentFound.toString());
+                        }
+                        if(parentsAction == "0") {
+                            break;
+                        }
+
+                    }
+                }
+                if(parentFound == null) {
+                    System.out.println("Wrong Email and/or password. Try again");
+                }
                 break;
             }
             continue;
@@ -158,9 +195,28 @@ public class Main {
         String input1 = input.nextLine();
         return input1;
     }
+    public static String parentActionAsk(Scanner input) {
+        System.out.print("What do you want to do?\n1. Check student balance\n2. Add Funds\n3. Summary\n0. Exit\n");
+
+        String input1 = input.nextLine();
+        return input1;
+    }
+
+    public static String emailAsk(Scanner input) {
+        System.out.print("Enter your email: ");
+
+        String input1 = input.nextLine();
+        return input1;
+    }
 
     public static String addMenuName(Scanner input) {
         System.out.print("Enter Item Name: ");
+
+        String input1 = input.nextLine();
+        return input1;
+    }
+    public static String getAmount(Scanner input) {
+        System.out.print("Enter Item Amount: ");
 
         String input1 = input.nextLine();
         return input1;
@@ -196,5 +252,12 @@ public class Main {
             }
         }
         return null;
+    }
+
+    public void orderLunch(Staff staff, Student student) {
+        staff.totalLunchesOrdering -= 1;
+        staff.totalLunchesServed +=1;
+        
+        double totalPrice = student.getTotalCost();
     }
 }

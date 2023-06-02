@@ -7,8 +7,6 @@ public class Staff extends User {
     ArrayList<String> itemName = new ArrayList<String>();
     ArrayList<Double> itemPrice = new ArrayList<Double>();
 
-    ArrayList<Student> students = new ArrayList<Student>();
-
     public Staff(String name, String password, String email, String phoneNumber, String classID, int totalLunchesOrdering) {
         super(name, password, email, phoneNumber, classID);
         this.totalLunchesOrdering = totalLunchesOrdering;
@@ -91,23 +89,5 @@ public class Staff extends User {
         public void removeFromMenu(int index) {
             itemName.remove(index);
             itemPrice.remove(index);
-        }
-
-        public void orderLunch(int LunchNumber) {
-            totalLunchesOrdering -= 1;
-            totalLunchesServed +=1;
-            
-            double totalPrice = 0.00;
-            for(int i = 0; i < students.size(); i++) {
-                if (students.get(i).getStudentID() == LunchNumber) {
-                    for (int a= 0; a < itemPrice.size(); a++) {
-                        totalPrice += itemPrice.get(a);
-                    }
-                    if (totalPrice <= students.get(i).getBalance()) {
-                        students.get(i).removeBalance(totalPrice);
-                    }
-                }
-
-            }
         }
 }

@@ -21,8 +21,14 @@ public class Parents extends User {
         public String getClassID() {
             return super.getClassID();
         }
+        public String getPassword() {
+            return password;
+        }
         public int getStudentID() {
             return studentID;
+        }
+        public CreditCard getCreditCard() {
+            return creditCard;
         }
         public String toString() {
             return super.toString() + "\n***********************************\n Parent Information\n***********************************\nStudentID: " + getStudentID() + "\nCredit Card: " + creditCard.toString() + "\n***********************************";
